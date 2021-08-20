@@ -9,15 +9,11 @@ import (
 
 var Serve http.Handler
 var Bot *telebot.Bot
+var TelegramToken string
+var ChannelId int64
+var AdminGroupId int64
 var Channel *telebot.Chat
-var token string
-var channel_id_str string
-
-func check(e error) {
-	if e != nil {
-		panic(e)
-	}
-}
+var AdminGroup *telebot.Chat
 
 func init() {
 	initRouter()

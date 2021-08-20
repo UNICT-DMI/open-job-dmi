@@ -28,7 +28,8 @@ $( document ).ready(function() {
 	function createJsonForm(){
 		var offerta = {}
 		offerta['azienda'] = document.getElementById('azienda').value;
-		offerta['email'] = document.getElementById('ruolo').value;
+		offerta['ruolo'] = document.getElementById('ruolo').value;
+		offerta['email'] = document.getElementById('email').value;
 		offerta['descrizione'] = document.getElementById('descrizione').value;
 		offerta['competenze'] = document.getElementById('competenze').value;
 		offerta['benefits'] = document.getElementById('benefits').value;

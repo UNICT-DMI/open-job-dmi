@@ -48,17 +48,10 @@ func offer(w http.ResponseWriter, r *http.Request) {
 
 	var message string
 
-	message = "*Azienda*: " + o.Azienda + "\n"
-	message += "*Email*: " + o.Email + "\n"
-	message += "*Ruolo*: " + o.Ruolo + "\n\n"
-	message += "*Descrizione*\n" + o.Descrizione + "\n"
-	message += "*Competenze Richieste*\n" + o.Competenze + "\n"
-
-	if o.Benefits != "" {
-		message += "**Benefits**\n" + o.Benefits + "\n"
-	}
-
-	message += "*Disponibilità*: "
+	message = "*Azienda*: " + o.Azienda
+	message += "\n*Email*: " + o.Email
+	message += "\n*Ruolo*: " + o.Ruolo
+	message += "\n*Disponibilità*: "
 
 	if o.FullTime && o.PartTime {
 		message += "Full-Time/Part-time"
@@ -68,7 +61,14 @@ func offer(w http.ResponseWriter, r *http.Request) {
 		message += "Part-Time"
 	}
 
-	Bot.Send(Channel, message)
+	message += "\n\n*Descrizione*\n" + o.Descrizione
+	message += "\n\n*Competenze Richieste*\n" + o.Competenze
+
+	if o.Benefits != "" {
+		message += "\n\n**Benefits**\n" + o.Benefits
+	}
+
+	sendOfferToAdminGroup(message)
 
 	response := "{\"message\": \"success\"}"
 	w.Header().Set("Content-Type", "application/json")
