@@ -75,17 +75,17 @@ func offer(w http.ResponseWriter, r *http.Request) {
 
 	var message string
 
-	message = "Azienda: " + o.Azienda + "\n"
-	message += "Email: " + o.Email + "\n"
-	message += "Ruolo: " + o.Ruolo + "\n\n"
-	message += "Descrizione\n" + o.Descrizione + "\n"
-	message += "Competenze Richieste\n" + o.Competenze + "\n"
+	message = "*Azienda*: " + o.Azienda + "\n"
+	message += "*Email*: " + o.Email + "\n"
+	message += "*Ruolo*: " + o.Ruolo + "\n\n"
+	message += "*Descrizione*\n" + o.Descrizione + "\n"
+	message += "*Competenze Richieste*\n" + o.Competenze + "\n"
 
 	if o.Benefits != "" {
-		message += "Benefits\n" + o.Benefits + "\n"
+		message += "**Benefits**\n" + o.Benefits + "\n"
 	}
 
-	message += "Disponibilità: "
+	message += "*Disponibilità*: "
 
 	if o.FullTime && o.PartTime {
 		message += "Full-Time/Part-time"
@@ -141,8 +141,9 @@ func init() {
 	log.Println("[Bot] CHANNEL_ID: " + channel_id_str)
 
 	Bot, err = telebot.NewBot(telebot.Settings{
-		Token:  token,
-		Poller: &telebot.LongPoller{Timeout: 10 * time.Second},
+		Token:     token,
+		ParseMode: telebot.ModeMarkdown,
+		Poller:    &telebot.LongPoller{Timeout: 10 * time.Second},
 	})
 
 	check(err)
