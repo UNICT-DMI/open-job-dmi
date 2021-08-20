@@ -8,13 +8,30 @@ $( document ).ready(function() {
 	$( "#full-time" ).click(checkForm);
 	$( "#part-time" ).click(checkForm);
 
+	$( '#submit' ).click(function(){
+		dataRequest = createJsonForm();
+
+		$.ajax({
+			url: '/api/offer',
+			type: 'POST',
+			dataType: 'json',
+			data: JSON.stringify(dataRequest),
+			error : function(xhr, textStatus, errorThrown) {
+                alert('An error occurred!');
+            },
+			success:function(response){
+				alert('Success');
+			}
+		});
+	});
+
 	function createJsonForm(){
 		var offerta = {}
 		offerta['azienda'] = document.getElementById('azienda').value;
 		offerta['email'] = document.getElementById('ruolo').value;
 		offerta['descrizione'] = document.getElementById('descrizione').value;
 		offerta['competenze'] = document.getElementById('competenze').value;
-		offerta['benefits'] = document.getElementById('competenze').value;
+		offerta['benefits'] = document.getElementById('benefits').value;
 		offerta['fulltime'] = document.getElementById('full-time').checked;
 		offerta['parttime'] = document.getElementById('part-time').checked;
 
