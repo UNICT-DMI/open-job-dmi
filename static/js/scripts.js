@@ -9,6 +9,12 @@ $( document ).ready(function() {
 	$( "#part-time" ).click(checkForm);
 
 	$( '#submit' ).click(function(){
+		if($( '#submit-success' ).hasClass('d-none') == false)
+			$( '#submit-success' ).addClass('d-none');
+		
+		if($( '#submit-error' ).hasClass('d-none') == false)
+			$( '#submit-error' ).addClass('d-none');
+
 		dataRequest = createJsonForm();
 
 		$.ajax({
@@ -20,7 +26,7 @@ $( document ).ready(function() {
                 alert('An error occurred!');
             },
 			success:function(response){
-				alert('Success');
+				$( '#submit-success' ).removeClass('d-none');
 			}
 		});
 	});
