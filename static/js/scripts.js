@@ -23,7 +23,7 @@ $( document ).ready(function() {
 			dataType: 'json',
 			data: JSON.stringify(dataRequest),
 			error : function(xhr, textStatus, errorThrown) {
-                alert('An error occurred!');
+				$( '#submit-error' ).removeClass('d-none');
             },
 			success:function(response){
 				$( '#submit-success' ).removeClass('d-none');

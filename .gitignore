@@ -5,6 +5,9 @@
 *.so
 *.dylib
 
+# ignore docker compose
+docker-compose.yaml
+
 # Test binary, built with `go test -c`
 *.test
 
