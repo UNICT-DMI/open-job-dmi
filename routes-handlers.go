@@ -3,18 +3,14 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
 	"log"
 	"net/http"
 	"path"
 )
 
-func writeView(w http.ResponseWriter, view string) {
+func renderView(w http.ResponseWriter, r *http.Request, view string) {
 	pathFile := path.Join("./views/", view)
-	data, err := ioutil.ReadFile(pathFile)
-	check(err)
-
-	w.Write(data)
+	http.ServeFile(w, r, pathFile)
 }
 
 func loggingMiddleware(next http.Handler) http.Handler {
@@ -25,15 +21,15 @@ func loggingMiddleware(next http.Handler) http.Handler {
 }
 
 func home(w http.ResponseWriter, r *http.Request) {
-	writeView(w, "index.html")
+	renderView(w, r, "index.html")
 }
 
 func about(w http.ResponseWriter, r *http.Request) {
-	writeView(w, "about.html")
+	renderView(w, r, "about.html")
 }
 
 func faq(w http.ResponseWriter, r *http.Request) {
-	writeView(w, "faq.html")
+	renderView(w, r, "faq.html")
 }
 
 func offer(w http.ResponseWriter, r *http.Request) {
