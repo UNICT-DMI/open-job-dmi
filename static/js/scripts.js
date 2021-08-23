@@ -20,7 +20,7 @@ $( document ).ready(function() {
 
 		dataRequest = createJsonForm();
 
-		if(ValidateEmail(dataRequest['email']) == false){
+		if(validateEmail(dataRequest['email']) == false){
 			$( '#email-error' ).removeClass('d-none');
 			return;
 		}
@@ -78,11 +78,9 @@ $( document ).ready(function() {
 		
 	}
 
-	function ValidateEmail(email) {
- 		if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email))
-    		return true;
-    	
-		return false;
-	}
+	function validateEmail(email) {
+		const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+		return re.test(email);
+	  }
 
 });
