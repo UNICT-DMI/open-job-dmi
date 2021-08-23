@@ -3,14 +3,24 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"html/template"
 	"log"
 	"net/http"
 	"path"
 )
 
-func renderView(w http.ResponseWriter, r *http.Request, view string) {
-	pathFile := path.Join("./views/", view)
-	http.ServeFile(w, r, pathFile)
+func renderView(w http.ResponseWriter, view string) {
+	viewPath := view + ".html"
+	content := path.Join("./views/", viewPath)
+	header := "./views/template/header.html"
+	footer := "./views/template/footer.html"
+	tpl, err := template.ParseFiles(content, header, footer)
+
+	if err != nil {
+		panic("Error while rendering pages.")
+	}
+
+	tpl.ExecuteTemplate(w, view, nil)
 }
 
 func loggingMiddleware(next http.Handler) http.Handler {
@@ -21,15 +31,15 @@ func loggingMiddleware(next http.Handler) http.Handler {
 }
 
 func home(w http.ResponseWriter, r *http.Request) {
-	renderView(w, r, "index.html")
+	renderView(w, "index")
 }
 
 func about(w http.ResponseWriter, r *http.Request) {
-	renderView(w, r, "about.html")
+	renderView(w, "about")
 }
 
 func faq(w http.ResponseWriter, r *http.Request) {
-	renderView(w, r, "faq.html")
+	renderView(w, "faq")
 }
 
 func offer(w http.ResponseWriter, r *http.Request) {
