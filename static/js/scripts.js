@@ -14,8 +14,16 @@ $( document ).ready(function() {
 		
 		if($( '#submit-error' ).hasClass('d-none') == false)
 			$( '#submit-error' ).addClass('d-none');
+		
+		if($( '#email-error' ).hasClass('d-none') == false)
+			$( '#email-error' ).addClass('d-none');
 
 		dataRequest = createJsonForm();
+
+		if(ValidateEmail(dataRequest['email']) == false){
+			$( '#email-error' ).removeClass('d-none');
+			return;
+		}
 
 		$.ajax({
 			url: '/api/offer',
@@ -68,6 +76,13 @@ $( document ).ready(function() {
 		if(!error && submitDisabled != '')
 			document.getElementById('submit').disabled = '';
 		
+	}
+
+	function ValidateEmail(email) {
+ 		if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email))
+    		return true;
+    	
+		return false;
 	}
 
 });
