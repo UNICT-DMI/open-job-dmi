@@ -30,6 +30,10 @@ func loadConfig() {
 		log.Panic("Error: CHANNEL_ID is not set.")
 	}
 
+	AdminGroupId, err = strconv.ParseInt(adminGroupIdStr, 10, 64)
+
+	check(err)
+
 	ReCaptchaConf.SiteKey = os.Getenv("RECAPTCHA_SITE_KEY")
 
 	if ReCaptchaConf.SiteKey == "" {
