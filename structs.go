@@ -5,6 +5,7 @@ import "time"
 type Offer struct {
 	Azienda        string `json:"azienda"`
 	Email          string `json:"email"`
+	Sede           string `json:"sede"`
 	Ruolo          string `json:"ruolo"`
 	Salario        string `json:"salario"`
 	Descrizione    string `json:"descrizione"`

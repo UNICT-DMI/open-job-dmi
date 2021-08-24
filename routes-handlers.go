@@ -65,6 +65,7 @@ func offer(w http.ResponseWriter, r *http.Request) {
 
 	message = "<b>Azienda</b>: " + o.Azienda
 	message += "\n<b>Email</b>: " + o.Email
+	message += "\n<b>Sede di lavoro</b>: " + o.Sede
 	message += "\n<b>Ruolo</b>: " + o.Ruolo
 	message += "\n<b>Salario</b>: " + o.Salario
 	message += "\n<b>Disponibilità</b>: "
