@@ -2,6 +2,7 @@ $( document ).ready(function() {
 	$( "#azienda" ).blur(checkForm);
 	$( "#email" ).blur(checkForm);
 	$( "#ruolo" ).blur(checkForm);
+	$( "#salario" ).blur(checkForm);
 	$( "#descrizione" ).blur(checkForm);
 	$( "#competenze" ).blur(checkForm);
 	$( "#benefits" ).blur(checkForm);
@@ -51,6 +52,7 @@ $( document ).ready(function() {
 		var offerta = {}
 		offerta['azienda'] = document.getElementById('azienda').value;
 		offerta['ruolo'] = document.getElementById('ruolo').value;
+		offerta['salario'] = document.getElementById('salario').value;
 		offerta['email'] = document.getElementById('email').value;
 		offerta['descrizione'] = document.getElementById('descrizione').value;
 		offerta['competenze'] = document.getElementById('competenze').value;

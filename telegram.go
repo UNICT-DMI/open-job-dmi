@@ -37,6 +37,7 @@ func initTelegramBot() {
 		c.Message.Text = strings.Replace(c.Message.Text, "Azienda:", "*Azienda*:", -1)
 		c.Message.Text = strings.Replace(c.Message.Text, "Email:", "*Email*:", -1)
 		c.Message.Text = strings.Replace(c.Message.Text, "Ruolo:", "*Ruolo*:", -1)
+		c.Message.Text = strings.Replace(c.Message.Text, "Salario:", "*Salario*:", -1)
 		c.Message.Text = strings.Replace(c.Message.Text, "Descrizione", "*Descrizione*", -1)
 		c.Message.Text = strings.Replace(c.Message.Text, "Competenze Richieste", "*Competenze Richieste*", -1)
 		c.Message.Text = strings.Replace(c.Message.Text, "Benefits", "*Benefits*", -1)

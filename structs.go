@@ -6,6 +6,7 @@ type Offer struct {
 	Azienda        string `json:"azienda"`
 	Email          string `json:"email"`
 	Ruolo          string `json:"ruolo"`
+	Salario        string `json:"salario"`
 	Descrizione    string `json:"descrizione"`
 	Competenze     string `json:"competenze"`
 	Benefits       string `json:"benefits"`

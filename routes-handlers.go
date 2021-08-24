@@ -66,6 +66,7 @@ func offer(w http.ResponseWriter, r *http.Request) {
 	message = "*Azienda*: " + o.Azienda
 	message += "\n*Email*: " + o.Email
 	message += "\n*Ruolo*: " + o.Ruolo
+	message += "\n*Salario*: " + o.Salario
 	message += "\n*Disponibilità*: "
 
 	if o.FullTime && o.PartTime {
