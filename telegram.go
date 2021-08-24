@@ -19,7 +19,7 @@ func initTelegramBot() {
 
 	Bot, err = telebot.NewBot(telebot.Settings{
 		Token:     TelegramToken,
-		ParseMode: telebot.ModeMarkdown,
+		ParseMode: telebot.ModeHTML,
 		Poller:    &telebot.LongPoller{Timeout: 10 * time.Second},
 	})
 
@@ -34,14 +34,14 @@ func initTelegramBot() {
 	)
 
 	Bot.Handle(&approve, func(c *telebot.Callback) {
-		c.Message.Text = strings.Replace(c.Message.Text, "Azienda:", "*Azienda*:", -1)
-		c.Message.Text = strings.Replace(c.Message.Text, "Email:", "*Email*:", -1)
-		c.Message.Text = strings.Replace(c.Message.Text, "Ruolo:", "*Ruolo*:", -1)
-		c.Message.Text = strings.Replace(c.Message.Text, "Salario:", "*Salario*:", -1)
-		c.Message.Text = strings.Replace(c.Message.Text, "Descrizione", "*Descrizione*", -1)
-		c.Message.Text = strings.Replace(c.Message.Text, "Competenze Richieste", "*Competenze Richieste*", -1)
-		c.Message.Text = strings.Replace(c.Message.Text, "Benefits", "*Benefits*", -1)
-		c.Message.Text = strings.Replace(c.Message.Text, "Disponibilità:", "*Disponibilità*:", -1)
+		c.Message.Text = strings.Replace(c.Message.Text, "Azienda:", "<b>Azienda</b>:", -1)
+		c.Message.Text = strings.Replace(c.Message.Text, "Email:", "<b>Email</b>:", -1)
+		c.Message.Text = strings.Replace(c.Message.Text, "Ruolo:", "<b>Ruolo</b>:", -1)
+		c.Message.Text = strings.Replace(c.Message.Text, "Salario:", "<b>Salario</b>:", -1)
+		c.Message.Text = strings.Replace(c.Message.Text, "Descrizione", "<b>Descrizione</b>", -1)
+		c.Message.Text = strings.Replace(c.Message.Text, "Competenze Richieste", "<b>Competenze Richieste</b>", -1)
+		c.Message.Text = strings.Replace(c.Message.Text, "Benefits", "<b>Benefits</b>", -1)
+		c.Message.Text = strings.Replace(c.Message.Text, "Disponibilità:", "<b>Disponibilità</b>:", -1)
 
 		sendMessageToChannel(c.Message.Text)
 

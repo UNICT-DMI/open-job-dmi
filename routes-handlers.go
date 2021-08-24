@@ -63,11 +63,11 @@ func offer(w http.ResponseWriter, r *http.Request) {
 
 	var message string
 
-	message = "*Azienda*: " + o.Azienda
-	message += "\n*Email*: " + o.Email
-	message += "\n*Ruolo*: " + o.Ruolo
-	message += "\n*Salario*: " + o.Salario
-	message += "\n*Disponibilità*: "
+	message = "<b>Azienda</b>: " + o.Azienda
+	message += "\n<b>Email</b>: " + o.Email
+	message += "\n<b>Ruolo</b>: " + o.Ruolo
+	message += "\n<b>Salario</b>: " + o.Salario
+	message += "\n<b>Disponibilità</b>: "
 
 	if o.FullTime && o.PartTime {
 		message += "Full-Time/Part-time"
@@ -77,11 +77,11 @@ func offer(w http.ResponseWriter, r *http.Request) {
 		message += "Part-Time"
 	}
 
-	message += "\n\n*Descrizione*\n" + o.Descrizione
-	message += "\n\n*Competenze Richieste*\n" + o.Competenze
+	message += "\n\n<b>Descrizione</b>\n" + o.Descrizione
+	message += "\n\n<b>Competenze Richieste</b>\n" + o.Competenze
 
 	if o.Benefits != "" {
-		message += "\n\n**Benefits**\n" + o.Benefits
+		message += "\n\n<b>Benefits</b>\n" + o.Benefits
 	}
 
 	sendOfferToAdminGroup(message)
