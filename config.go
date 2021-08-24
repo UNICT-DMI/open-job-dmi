@@ -1,6 +1,7 @@
 package main
 
 import (
+	"log"
 	"os"
 	"strconv"
 )
@@ -10,13 +11,13 @@ func loadConfig() {
 	TelegramToken = os.Getenv("TELEGRAM_TOKEN")
 
 	if TelegramToken == "" {
-		panic("Error: TELEGRAM_TOKEN is not set.")
+		log.Panic("Error: TELEGRAM_TOKEN is not set.")
 	}
 
 	channelIdStr := os.Getenv("CHANNEL_ID")
 
 	if channelIdStr == "" {
-		panic("Error: CHANNEL_ID is not set.")
+		log.Panic("Error: CHANNEL_ID is not set.")
 	}
 
 	ChannelId, err = strconv.ParseInt(channelIdStr, 10, 64)
@@ -26,10 +27,18 @@ func loadConfig() {
 	adminGroupIdStr := os.Getenv("ADMIN_GROUP_ID")
 
 	if adminGroupIdStr == "" {
-		panic("Error: CHANNEL_ID is not set.")
+		log.Panic("Error: CHANNEL_ID is not set.")
 	}
 
-	AdminGroupId, err = strconv.ParseInt(adminGroupIdStr, 10, 64)
+	ReCaptchaConf.SiteKey = os.Getenv("RECAPTCHA_SITE_KEY")
 
-	check(err)
+	if ReCaptchaConf.SiteKey == "" {
+		log.Panic("Error: RECAPTCHA_SITE_KEY is not set.")
+	}
+
+	ReCaptchaConf.Secret = os.Getenv("RECAPTCHA_SECRET")
+
+	if ReCaptchaConf.Secret == "" {
+		log.Panic("Error: RECAPTCHA_SECRET is not set.")
+	}
 }

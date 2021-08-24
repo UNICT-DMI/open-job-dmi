@@ -7,9 +7,11 @@ services:
   open-job-dmi:
     build: .
     environment:
-      - TELEGRAM_TOKEN=<your-telegram-token>
-      - CHANNEL_ID=<your-channel-id>
-      - ADMIN_GROUP_ID=<your-admin-group-id>
+      - TELEGRAM_TOKEN=
+      - CHANNEL_ID=
+      - ADMIN_GROUP_ID=
+      - RECAPTCHA_SITE_KEY=
+      - RECAPTCHA_SECRET=
     ports:
       - 8080:8080
 ```

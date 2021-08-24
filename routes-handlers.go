@@ -9,9 +9,8 @@ import (
 	"path"
 )
 
-func renderView(w http.ResponseWriter, view string) {
-	viewPath := view + ".html"
-	content := path.Join("./views/", viewPath)
+func renderView(view string) *template.Template {
+	content := path.Join("./views/", view)
 	header := "./views/template/header.html"
 	footer := "./views/template/footer.html"
 	tpl, err := template.ParseFiles(content, header, footer)
@@ -20,7 +19,7 @@ func renderView(w http.ResponseWriter, view string) {
 		panic("Error while rendering pages.")
 	}
 
-	tpl.ExecuteTemplate(w, view, nil)
+	return tpl
 }
 
 func loggingMiddleware(next http.Handler) http.Handler {
@@ -31,15 +30,18 @@ func loggingMiddleware(next http.Handler) http.Handler {
 }
 
 func home(w http.ResponseWriter, r *http.Request) {
-	renderView(w, "index")
+	tpl := renderView("index.html")
+	tpl.ExecuteTemplate(w, "index", map[string]interface{}{"RecaptchaSiteKey": ReCaptchaConf.SiteKey})
 }
 
 func about(w http.ResponseWriter, r *http.Request) {
-	renderView(w, "about")
+	tpl := renderView("about.html")
+	tpl.ExecuteTemplate(w, "about", nil)
 }
 
 func faq(w http.ResponseWriter, r *http.Request) {
-	renderView(w, "faq")
+	tpl := renderView("faq.html")
+	tpl.ExecuteTemplate(w, "faq", nil)
 }
 
 func offer(w http.ResponseWriter, r *http.Request) {
@@ -49,6 +51,13 @@ func offer(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		log.Println(err)
 		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+
+	err = CheckRecaptcha(ReCaptchaConf.Secret, o.ReCaptchaToken)
+
+	if err != nil {
+		log.Println(err)
 		return
 	}
 

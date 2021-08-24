@@ -68,6 +68,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <input type="hidden" id="recaptcha_key" value="{{ .RecaptchaSiteKey }}">
                                     <div class="d-none" id="submit-error"><div class="text-center text-danger mb-3">Errore durante l'invio della richiesta.</div></div>
                                     <div class="d-none" id="submit-success"><div class="text-center text-success mb-3">Richiesta inviata correttamente.</div></div>
                                     <div class="d-grid"><button class="btn btn-primary btn-lg" id="submit" type="submit" disabled>Invia</button></div>
@@ -101,7 +102,7 @@
         </main>
 {{ template "footer" }}
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-<script src="https://www.google.com/recaptcha/api.js?render=reCAPTCHA_site_key"></script>
+<script src="https://www.google.com/recaptcha/api.js?render={{ .RecaptchaSiteKey }}"></script>
 <script src="/static/js/scripts.js"></script>
 </body>
 </html>

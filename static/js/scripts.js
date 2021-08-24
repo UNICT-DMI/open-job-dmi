@@ -25,18 +25,26 @@ $( document ).ready(function() {
 			return;
 		}
 
-		$.ajax({
-			url: '/api/offer',
-			type: 'POST',
-			dataType: 'json',
-			data: JSON.stringify(dataRequest),
-			error : function(xhr, textStatus, errorThrown) {
-				$( '#submit-error' ).removeClass('d-none');
-            },
-			success:function(response){
-				$( '#submit-success' ).removeClass('d-none');
-			}
-		});
+		recaptcha_key = document.getElementById('recaptcha_key').value;
+
+		grecaptcha.ready(function() {
+			grecaptcha.execute(recaptcha_key, {action: 'submit'}).then(function(token) {
+				dataRequest['recaptcha_token'] = token;
+
+				$.ajax({
+					url: '/api/offer',
+					type: 'POST',
+					dataType: 'json',
+					data: JSON.stringify(dataRequest),
+					error : function(xhr, textStatus, errorThrown) {
+						$( '#submit-error' ).removeClass('d-none');
+					},
+					success:function(response){
+						$( '#submit-success' ).removeClass('d-none');
+					}
+				});
+			});
+		  });
 	});
 
 	function createJsonForm(){
