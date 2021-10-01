@@ -1,4 +1,5 @@
 # open-job-dmi
+[![CodeFactor](https://www.codefactor.io/repository/github/unict-dmi/open-job-dmi/badge)](https://www.codefactor.io/repository/github/unict-dmi/open-job-dmi)
 
 ## Run with Docker Compose
 ```yaml
