@@ -2,7 +2,7 @@
 [![CodeFactor](https://www.codefactor.io/repository/github/unict-dmi/open-job-dmi/badge)](https://www.codefactor.io/repository/github/unict-dmi/open-job-dmi)
 
 ## Live Demo
-- [Telegram channel OpenJobDMI](https://t.me/OpenJobDMI) & [open-job-dmi website](https://open-job-dmi.unictdevs.com)
+- [Telegram channel OpenJobDMI](https://t.me/OpenJobDMI) & [open-job-dmi website](https://open-job-dmi.unictdev.org/)
 
 
 ## Run with Docker Compose
