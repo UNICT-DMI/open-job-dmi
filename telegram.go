@@ -56,6 +56,10 @@ func initTelegramBot() {
 		message := "Rifiutato da " + c.Sender.Username
 		Bot.Reply(c.Message, message)
 	})
+
+	Bot.Handle("/start", func(m *telebot.Message) {
+		Bot.Send(m.Sender, "Ciao! 👋 \n\n Sei in cerca di sviluppatori ed esperti del mondo IT? Invia la tua proposta e raggiungi studenti, laureandi e neolaureati del Dipartimento di Matematica e Informatica dell'Università degli Studi di Catania. \n\n https://open-job-dmi.unictdev.org/")
+	})
 }
 
 func startTelegramBot() {
